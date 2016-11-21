@@ -6,9 +6,10 @@
         </Console>
     </appenders>
     <loggers>
-        <logger name="org.hibernate" level="WARN"/>
         <logger name="org.hibernate.SQL" level="DEBUG"/>
         <logger name="org.hibernate.type" level="TRACE"/>
+        <logger name="org.hibernate.type.BasicTypeRegistry" level="WARN"/>
+        <logger name="org.hibernate.type.TypeFactory" level="WARN"/>
         <root level="WARN">
             <appender-ref ref="STDOUT" />
         </root>
