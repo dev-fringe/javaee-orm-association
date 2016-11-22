@@ -15,7 +15,7 @@ public class Application {
 
     @Inject ContactService contactService;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new AnnotationConfigApplicationContext(Application.class).getBean(Application.class).run();
     }
 
