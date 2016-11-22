@@ -1,18 +1,25 @@
 package dev.fringe;
 
 import dev.fringe.service.ContactService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+import javax.inject.Inject;
 import java.io.IOException;
 
 @Configuration
 @ComponentScan
 @ImportResource(value =  {"app-datasource.xml","app-hibernate.xml"})
 public class Application {
-    public static void main(String[] args) throws IOException {
-        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        ContactService contactService = context.getBean(ContactService.class);
-        System.out.println(contactService.list());
 
+    @Inject ContactService contactService;
+
+    public static void main(String[] args) throws IOException {
+        new AnnotationConfigApplicationContext(Application.class).getBean(Application.class).run();
+    }
+
+    private void run() {
+        System.out.println(contactService.list());
     }
 }

@@ -1,39 +1,36 @@
 package dev.fringe.domain;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-/**
- * Created by v.hdlee on 2016-11-22.
- */
 @Entity(name = "Person")
 public class Person {
 
     @Id
     private Long id;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinTable(
-            name = "phone_register",
-            joinColumns = @JoinColumn(name = "phone_id"),
-            inverseJoinColumns = @JoinColumn(name = "person_id"))
-    @MapKey(name = "since")
-    @MapKeyTemporal(TemporalType.TIMESTAMP)
-    private Map<Date, Phone> phoneRegister = new HashMap<Date, Phone>();
 
-    public Person() {
+    private String name;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> books = new ArrayList<Book>(  );
+
+    public Long getId() {
+        return id;
     }
 
-    public Person(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Map<Date, Phone> getPhoneRegister() {
-        return phoneRegister;
+    public String getName() {
+        return name;
     }
 
-    public void addPhone(Phone phone) {
-        phoneRegister.put( phone.getSince(), phone );
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 }
