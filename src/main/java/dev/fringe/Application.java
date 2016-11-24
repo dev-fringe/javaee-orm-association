@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import javax.inject.Inject;
-import java.io.IOException;
 
 @Configuration
 @ComponentScan
@@ -19,7 +18,7 @@ public class Application {
         new AnnotationConfigApplicationContext(Application.class).getBean(Application.class).run();
     }
 
-    private void run() {
+    public void run() {
         System.out.println(contactService.list());
     }
 }
